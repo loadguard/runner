@@ -14,10 +14,7 @@ This file is a part of LoadGuard Runner.
 import asyncio
 from concurrent.futures import ProcessPoolExecutor
 
-import aiohttp
-
 from deepnox.clients.http_client import HttpClient
-from loadguard.scenarii.base import BaseScenario
 from loadguard.scenarii.scenario import LoadTestingScenario
 
 
