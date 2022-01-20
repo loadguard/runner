@@ -1,0 +1,2 @@
+class LoadPlan():
+    return 'salut'

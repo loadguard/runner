@@ -1,0 +1,13 @@
+---
+project:
+  name: project-test
+metadata:
+  label:
+    project.name: project-test
+configuration:
+  service:
+    uri:
+      scheme: https
+      hostname: example.org
+      path: /heurk
+

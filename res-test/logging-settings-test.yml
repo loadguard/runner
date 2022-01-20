@@ -1,0 +1,32 @@
+version: 1
+disable_existing_loggers: true
+formatters:
+  json_formatter:
+    (): JsonFormatter
+handlers:
+  default:
+    class: logging.StreamHandler
+    formatter: json_formatter
+    level: DEBUG
+    stream: sys.stdout
+loggers:
+  '':
+    handlers:
+      - default
+    level: DEBUG
+    propagate: true
+  __main__:
+    handlers:
+      - default
+    level: DEBUG
+    propagate: true
+  root:
+    handlers:
+      - default
+    level: DEBUG
+    propagate: true
+  loadguard:
+    handlers:
+      - default
+    level: DEBUG
+    propagate: true
