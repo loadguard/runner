@@ -16,7 +16,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 import aiohttp
 
-from loadguard.clients.base import HttpClient
+from deepnox.clients.http_client import HttpClient
 from loadguard.scenarii.base import BaseScenario
 from loadguard.scenarii.scenario import LoadTestingScenario
 
