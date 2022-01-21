@@ -151,7 +151,7 @@ setup(
         "load testing",
         "performance",
         "testing",
-        "test"ZZZZZ
+        "test"
     ],
     packages=[
         "deepnox",
