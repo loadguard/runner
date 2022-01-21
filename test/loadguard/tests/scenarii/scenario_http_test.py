@@ -27,12 +27,7 @@ class BaseScenarioTestCase(BaseAsyncTestCase):
         Tests: create a new instance of scenario.
         """
         self.assertIsInstance(HttpLoadTestingScenario(self.loop), BaseScenario)
-
-    def test__create_a_valid_instance_should_raise_an_error(self):
-        """
-        Tests: try to create an instance using invalid parameters.
-        """
-        self.assertRaises(TypeError, lambda: HttpLoadTestingScenario())
+        self.assertIsInstance(HttpLoadTestingScenario(self.loop), HttpLoadTestingScenario)
 
     def test__session(self):
         """

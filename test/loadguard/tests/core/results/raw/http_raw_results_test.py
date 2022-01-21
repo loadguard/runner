@@ -8,29 +8,30 @@ import datetime
 import unittest
 
 from deepnox.helpers.testing_helpers import BaseTestCase
-from deepnox.network.http import HttpRequestSummary, HttpResponse, HttpHit
+from deepnox.network.http import HttpRequest, HttpResponse, HttpHit, HttpMethod
 from deepnox.third import arrow
 
 
-class HttpRequestSummaryTestCase(BaseTestCase):
+class HttpRequestTestCase(BaseTestCase):
     """
-    Unit tests for {HttpRequestSummary}.
+    Unit tests for {HttpRequest}.
     """
 
     def test____init__(self):
         """
-        Test: create a new {HttpRequestSummary}
+        Test: create a new {HttpRequest}
         :return:
         """
-        self.assertIsInstance(HttpRequestSummary(), HttpRequestSummary)
+        self.assertIsInstance(HttpRequest(), HttpRequest)
 
     def test__size(self):
-        request_summary = HttpRequestSummary(body='body_test')
+        request_summary = HttpRequest(body='body_test')
         self.assertEqual(request_summary.size, 9)
 
     def test__dict(self):
-        request_summary = HttpRequestSummary(body='body_test')
-        self.assertEqual(request_summary.dict(exclude_none=True), {"body": "body_test", "size": 9})
+        request_summary = HttpRequest(body='body_test')
+        self.assertEqual({"body": "body_test", "size": 9, "method": HttpMethod.GET},
+                         request_summary.dict())
 
 
 class HttpResponseTestCase(unittest.TestCase):
@@ -76,7 +77,7 @@ class HttpHitTestCase(BaseTestCase):
         Test: create a new {HttpHit}
         :return:
         """
-        request = HttpRequestSummary(body='body_test')
+        request = HttpRequest(body='body_test')
         response = HttpResponse(status_code=200,
                                 size=56,
                                 headers={"Content-Type": "application/json"},
@@ -93,7 +94,7 @@ class HttpHitTestCase(BaseTestCase):
         """
         Test: convert network hit to dict.
         """
-        request_summary = HttpRequestSummary(body='body_test')
+        request_summary = HttpRequest(body='body_test')
         response_summary = HttpResponse(status_code=200,
                                         size=56,
                                         headers={"Content-Type": "application/json"},
