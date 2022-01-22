@@ -16,9 +16,8 @@ from distutils.core import Command
 __name__ = "loadguard-runner"
 """ The project name. """
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 """ The current version (work in progress). """
-
 
 try:
     from setuptools import setup
@@ -33,8 +32,6 @@ try:
 except ImportError:
     print("Warning: pypandoc module not found")
     read_md: FunctionType = lambda f: open(f, 'r').read()
-
-
 
 with open("requirements.txt") as f:
     requires = f.readlines()
@@ -154,42 +151,23 @@ setup(
         "test"
     ],
     packages=[
-        "deepnox",
-        "deepnox.aiobox",
-        "deepnox.aiorest",
-        "deepnox.auth",
-        "deepnox.clients",
-        "deepnox.core",
-        "deepnox.files",
-        "deepnox.helpers",
-        "deepnox.loggers",
-        "deepnox.models",
-        "deepnox.network",
-        "deepnox.patterns",
-        "deepnox.repositories",
-        "deepnox.serializers",
-        "deepnox.settings",
-        "deepnox.third",
-        "deepnox.utils",
+        "loadguard",
+        "loadguard.plugins",
+        "loadguard.project",
+        "loadguard.runner",
+        "loadguard.scenarii"
+        "loadguard.settings",
+        "loadguard.stores",
+        "loadguard.templates",
     ],
     package_dir={
-        "deepnox": "src/deepnox",
-        "deepnox.aiobox": "src/deepnox/aiobox",
-        "deepnox.aiorest": "src/deepnox/aiorest",
-        "deepnox.auth": "src/deepnox/auth",
-        "deepnox.clients": "src/deepnox/clients",
-        "deepnox.core": "src/deepnox/clients",
-        "deepnox.files": "src/deepnox/files",
-        "deepnox.helpers": "src/deepnox/clients",
-        "deepnox.loggers": "src/deepnox/loggers",
-        "deepnox.models": "src/deepnox/models",
-        "deepnox.network": "src/deepnox/network",
-        "deepnox.patterns": "src/deepnox/patterns",
-        "deepnox.repositories": "src/deepnox/repositories",
-        "deepnox.serializers": "src/deepnox/serializers",
-        "deepnox.settings": "src/deepnox/settings",
-        "deepnox.third": "src/deepnox/third",
-        "deepnox.utils": "src/deepnox/utils",
+        "loadguard": "src/loadguard",
+        "loadguard.plugins": "src/loadguard/plugins",
+        "loadguard.project": "src/loadguard/project",
+        "loadguard.runner": "src/loadguard/runner",
+        "loadguard.scenarii": "src/loadguard/scenarii",
+        "loadguard.stores": "src/loadguard/stores",
+        "loadguard.templates": "src/loadguard/templates",
     },
     scripts=[],
     install_requires=requires,

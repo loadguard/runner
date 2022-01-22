@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
+
 """
-# loadguard.project
+Package: :module:`loadguard.project.__init__`
 
 This file is a part of LoadGuard Runner.
 
 (c) 2021, Deepnox SAS.
 
-This module provides LoadGuard projects utilities.
 
 """
+
+__import__("pkg_resources").declare_namespace(__name__)
+

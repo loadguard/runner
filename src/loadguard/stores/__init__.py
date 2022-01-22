@@ -3,7 +3,7 @@
 """
 This module provides tools to manage stores.
 
-Package: :module:`loadguard.stores`
+Package: :module:`loadguard.stores.__init__`
 
 This file is a part of LoadGuard Runner.
 

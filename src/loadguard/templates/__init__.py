@@ -3,7 +3,7 @@
 """
 This module provides templates utilities.
 
-Package: :module:`loadguard.templates`
+Package: :module:`loadguard.templates.__init__`
 
 This file is a part of LoadGuard Runner.
 
