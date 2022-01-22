@@ -16,7 +16,7 @@ from distutils.core import Command
 __name__ = "loadguard-runner"
 """ The project name. """
 
-__version__ = "0.0.2"
+__version__ = "0.0.1"
 """ The current version (work in progress). """
 
 try:
@@ -145,7 +145,7 @@ setup(
     ],
     keywords=[
         "deepnox",
-        "load testing",
+        "load",
         "performance",
         "testing",
         "test"
