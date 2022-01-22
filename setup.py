@@ -165,6 +165,7 @@ setup(
         "loadguard.plugins": "src/loadguard/plugins",
         "loadguard.project": "src/loadguard/project",
         "loadguard.runner": "src/loadguard/runner",
+        "loadguard.settings": "src/loadguard/settings",
         "loadguard.scenarii": "src/loadguard/scenarii",
         "loadguard.stores": "src/loadguard/stores",
         "loadguard.templates": "src/loadguard/templates",
