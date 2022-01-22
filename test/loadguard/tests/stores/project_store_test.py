@@ -9,6 +9,7 @@ This file is a part of LoadGuard project.
 """
 
 import unittest
+from unittest import mock
 
 from deepnox.tests.helpers.filesystem import TestFileContent
 from deepnox.utils.maps import Map
@@ -27,10 +28,18 @@ class ProjectStoreTestCase(unittest.TestCase):
         self.assertRaises(ValueError, lambda: ProjectStore())
         self.assertRaises(TypeError, lambda: ProjectStore('string_test'))
 
-    def test__create_a_valid_instance_of_project_store(self):
+    @mock.patch("builtins.open", create=True)
+    def test__create_a_valid_instance_of_project_store(self, mock_open):
+        mock_open.side_effect = [
+            mock.mock_open(read_data="---\nsettings: settings_test").return_value
+        ]
+
         args = Map(project="project.test", environment="performance_test", config_dir="/my/config/dir")
         store = ProjectStore(args)
         self.assertIsInstance(store, ProjectStore)
+
+        mock_open.mock_calls == [mock.call(file="/1.txt", mode='r', encoding='utf-8')]
+
 
 if __name__ == '__main__':
     unittest.main()

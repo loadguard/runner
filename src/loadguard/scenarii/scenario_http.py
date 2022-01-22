@@ -14,6 +14,8 @@ This file is a part of LoadGuard Runner.
 import asyncio
 from concurrent.futures import ProcessPoolExecutor
 
+import aiohttp
+
 from deepnox.clients.http_client import HttpClient
 from loadguard.scenarii.scenario import LoadTestingScenario
 
@@ -35,6 +37,9 @@ class HttpLoadTestingScenario(LoadTestingScenario):
         """
         super().__init__(loop)
         self.http_client = http_client
+
+    def session(self) -> aiohttp.ClientSession:
+        return aiohttp.ClientSession(loop=self.loop)
 
     async def run(self, fn, timeout: int = 30):
         ex = ProcessPoolExecutor(2)
