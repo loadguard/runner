@@ -18,7 +18,8 @@ jobs:
     - name: "Install CI/CD dependencies then run unit tests"
       shell: bash -l {0}
       run: |
+        export PYTHONPATH=$(pwd)/src
         pip3 install -r requirements-cicd.txt
         pip3 install -r requirements.txt
         python3 setup.py install
-        python setup.py test
+        python3 setup.py test
