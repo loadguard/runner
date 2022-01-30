@@ -1,0 +1,7 @@
+include LICENSE
+include README.md
+include CHANGELOG.md
+include requirements.txt
+include requirements-cicd.txt
+include setup.cfg
+# recursive-include package/static *
