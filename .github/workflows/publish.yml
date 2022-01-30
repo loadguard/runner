@@ -19,7 +19,7 @@ jobs:
       shell: bash -l {0}
       run: |
         pip3 install -r requirements-cicd.txt \
-        pip3 install -r requirements.txt \
+        && pip3 install -r requirements.txt \
         && python3 setup.py install \
         && python3 setup.py test \
         && python3 setup.py build \
