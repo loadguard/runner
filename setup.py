@@ -155,7 +155,7 @@ setup(
         "loadguard.plugins",
         "loadguard.project",
         "loadguard.runner",
-        "loadguard.scenarii"
+        "loadguard.scenarii",
         "loadguard.settings",
         "loadguard.stores",
         "loadguard.templates",
