@@ -49,10 +49,9 @@ class TasksRunner(object):
         """
         self.LOG.debug('__init__()', extra={'store': store})
         self._store: ProjectStore = store
-        print("self._store", store.PROJECT)
-        self._main_module_name: str = self.load_module(store.PROJECT)
+        self._main_module_name: str = self.load_module(store.ARGS.project)
         if not self._main_module_name:
-            raise Exception(f'Unable to load project: {store.PROJECT}')
+            raise Exception(f'Unable to load project: {store.ARGS.project}')
 
     def load_module(self, py_module_name: str) -> ModuleType:
         """

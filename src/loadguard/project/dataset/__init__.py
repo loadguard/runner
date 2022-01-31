@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# loadguard.project.dataset
+# loadguard.project.datasets
 
 This file is a part of LoadGuard Runner.
 
 (c) 2021, Deepnox SAS.
 
-This module provides utilities to manage dataset.
+This module provides utilities to manage datasets.
 
 """
 
@@ -15,7 +15,7 @@ import os
 
 CURRENT_PATH = os.path.dirname(__file__)
 LG_HOME = os.path.abspath(os.path.join(CURRENT_PATH, '..', '..'))
-LG_RESOURCES_DATASET_DIR = os.path.join(LG_HOME, 'resources', 'dataset')
+LG_RESOURCES_DATASET_DIR = os.path.join(LG_HOME, 'resources', 'datasets')
 
 
 class Dataset(object):
