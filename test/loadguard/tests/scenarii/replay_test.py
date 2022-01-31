@@ -29,7 +29,7 @@ class HttpRequestReplayTestCase(BaseAsyncTestCase):
         """
         Tests: try to create an instance using invalid parameters.
         """
-        self.assertRaises(TypeError, lambda: HttpRequestReplay(self.loop))
+        self.assertRaises(TypeError, lambda: HttpRequestReplay(heurk=1))
 
 
 if __name__ == '__main__':
