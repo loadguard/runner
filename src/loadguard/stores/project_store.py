@@ -5,7 +5,11 @@
 
 This module provides a useful store to run a LoadGuard project sequence.
 
+This file is a part of LoadGuard Runner.
+
+(c) 2021, Deepnox SAS.
 """
+
 import asyncio
 import importlib
 import inspect
@@ -18,6 +22,7 @@ import arrow
 
 from deepnox.settings.base import read_yaml_file
 from deepnox.utils.maps import UpperMap, Map
+from loadguard.defaults import LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME
 
 LOGGER = logging.getLogger(__name__)
 """The main loggers. """
@@ -25,7 +30,7 @@ LOGGER = logging.getLogger(__name__)
 NOW = arrow.now().format('YYYYMMDD-HHmmss')
 
 
-class ProjectStore(UpperMap):
+class ProjectStore(Map):
     """
     A project store to pass data between tasks.
 
@@ -50,22 +55,42 @@ class ProjectStore(UpperMap):
         if not isinstance(args, (Namespace, Map)):
             raise TypeError(f"Creating a `{self.__class__.__name__}` needs a typed <argparse.Namespace> argument")
 
-        project_configuration_filename = "loadguard-project.yml"
-        print("config", args.config_dir)
-        settings_filename = os.path.join(args.config_dir, project_configuration_filename)
-        self['config'] = {
-            "dir": args.config_dir,
-            "filename": project_configuration_filename,
-        }
-        del args.config_dir
-        for arg in dir(args):
-            self[arg] = getattr(args, arg)
-
-        self.LOG.error("settings_filename", extra={"settings_filename": settings_filename})
-
-        self.SETTINGS = UpperMap(read_yaml_file(settings_filename))
-        self.DATA = UpperMap()
+        self.ARGS = ProjectStore.get_project_args(args)
+        self.PATHS = ProjectStore.get_project_paths(self.ARGS.project_root, self.ARGS.env)
+        self.PATHS.settings_file = os.path.join(self.PATHS.config, LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME)
+        self.SETTINGS = Map(read_yaml_file(self.PATHS.settings_file))
+        self.DATA = Map()
         self._loop: asyncio.AbstractEventLoop = None
+
+    @staticmethod
+    def get_project_paths(project_root: str, env: str):
+        """
+        Returns the usable paths by the current LoadGuard project.
+
+        :param project_root: The root path of project
+        :type project_root: str
+        :return: The usable paths by the project.
+        """
+        return Map({"src": os.environ.get("LG_PROJECT_SRC_DIR", os.path.join(project_root, "src")),
+                    "test": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "test")),
+                    "config": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "config", env)),
+                    "deploy": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "deploy", env)),
+                    "templates": os.environ.get("LG_PROJECT_TEMPLATES_DIR",
+                                                os.path.join(project_root, "res", "templates")),
+                    "datasets": os.environ.get("LG_PROJECT_DATASETS_DIR",
+                                                os.path.join(project_root, "res", "datasets"))}
+                   )
+
+    @staticmethod
+    def get_project_args(args):
+        """
+        Returns projects arguments as dict.
+
+        :param args: The arguments.
+        :return: The arguments as dict.
+        :rtype: Map
+        """
+        return Map({arg: getattr(args, arg) for arg in dir(args)})
 
     @property
     def loop(self):
@@ -92,8 +117,9 @@ class TasksRunner(object):
         """
         self.LOG.debug('__init__()', extra={'store': store})
         self._store: ProjectStore = store
-        self._main_module_name: str = self.load_module(store.PROJECT)
-        if not self._main_module_name:
+        self._package = self.load_module(store.project)
+        self._store.project_home = os.path.abspath(self._package.__file__)
+        if not self._package:
             raise Exception(f'Unable to load project: {store.PROJECT}')
 
     def load_module(self, py_module_name: str) -> ModuleType:
@@ -103,10 +129,10 @@ class TasksRunner(object):
         :param py_module_name: The Python module name.
         :type py_module_name: str
         """
-        self.LOG.debug('load_module()', extra={'task': py_module_name})
+        self.LOG.debug('load_module()', extra={'py_module_name': py_module_name})
         if py_module_name is None or not isinstance(py_module_name, str):
             raise AttributeError(
-                f'Argument is `None` or invalid: (task={py_module_name})')
+                f'Argument is `None` or invalid: (py_module_name={py_module_name})')
         return importlib.import_module(py_module_name)
 
     def get_user_classes(self) -> list:
@@ -129,7 +155,7 @@ class TasksRunner(object):
         :return: The completed project store.
         :rtype: ProjectStore
         """
-        self.LOG.debug('run_task()', {'task': task})
+        self.LOG.debug('run(task: str)', {'task': task})
         if not isinstance(self._store, ProjectStore):
             raise TypeError(
                 f'`store` must be an instance of `ProjectStore`: (store={self._store})')
