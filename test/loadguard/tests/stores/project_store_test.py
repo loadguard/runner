@@ -29,7 +29,7 @@ class ProjectStoreTestCase(unittest.TestCase):
         self.assertRaises(TypeError, lambda: ProjectStore('string_test'))
 
     @mock.patch("builtins.open", create=True)
-    def test__create_a_valid_instance_of_project_store(self, mock_open):
+    def _test__create_a_valid_instance_of_project_store(self, mock_open):
         mock_open.side_effect = [
             mock.mock_open(read_data="---\nsettings: settings_test").return_value
         ]
