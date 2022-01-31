@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """
-This module provides tools to create load tests scenarii.
+This module provides tools to create load tests user_scenarii.
 
-Module: :module:`loadguard.scenarii.scenario_http`
+Module: :module:`loadguard.user_scenarii.scenario_http`
 
 This file is a part of LoadGuard Runner.
 
@@ -30,7 +30,7 @@ class HttpLoadTestingScenario(LoadTestingScenario):
                  http_client: HttpClient = None,
                  ):
         """
-        Instantiate a new :class:`loadguard.scenarii.scenario.LoadTestingScenario`
+        Instantiate a new :class:`loadguard.user_scenarii.scenario.LoadTestingScenario`
 
         :param loop: The event loop.
         :type loop: :class:`asyncio.AbstractEventLoop`
