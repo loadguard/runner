@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """
-This module provides tools to create load tests scenarii.
+This module provides tools to create load tests user_scenarii.
 
-Module: :module:`loadguard.scenarii.scenario`
+Module: :module:`loadguard.user_scenarii.scenario`
 
 This file is a part of LoadGuard Runner.
 
@@ -23,7 +23,7 @@ class LoadTestingScenario(BaseScenario):
 
     def __init__(self, loop: asyncio.AbstractEventLoop):
         """
-        Instantiate a new :class:`loadguard.scenarii.scenario.LoadTestingScenario`
+        Instantiate a new :class:`loadguard.user_scenarii.scenario.LoadTestingScenario`
 
         :param loop: The event loop.
         :type loop: :class:`asyncio.AbstractEventLoop`

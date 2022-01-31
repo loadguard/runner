@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Package: loadguard.tests.scenarii
+Package: loadguard.tests.user_scenarii
 
 Scenarii orchestrator.
 

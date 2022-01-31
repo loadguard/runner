@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Unit tests for module: loadguard.tests.scenarii.base_test
+Unit tests for module: loadguard.tests.user_scenarii.base_test
 
 This file is a part of LoadGuard project.
 

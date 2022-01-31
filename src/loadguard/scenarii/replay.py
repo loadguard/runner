@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """
-This module provides tools to create load tests scenarii.
+This module provides tools to create load tests user_scenarii.
 
-Module: :module:`loadguard.scenarii.replay`
+Module: :module:`loadguard.user_scenarii.replay`
 
 This file is a part of LoadGuard Runner.
 
@@ -18,7 +18,7 @@ from deepnox.clients.http_client import HttpClient
 from deepnox.network.http import HttpRequest
 
 LOGGER = loggers.factory(__name__)
-""" The main logger of :module:`loadguard.scenarii.replay`. """
+""" The main logger of :module:`loadguard.user_scenarii.replay`. """
 
 
 class HttpRequestReplay(HttpClient):
@@ -28,7 +28,7 @@ class HttpRequestReplay(HttpClient):
     """
 
     LOG = LOGGER.getChild('ReplayHttpRequest')
-    """ The main logger of :class:`loadguard.scenarii.replay.ReplayHttpRequest`. """
+    """ The main logger of :class:`loadguard.user_scenarii.replay.ReplayHttpRequest`. """
 
     def __init__(self,
                  loop: asyncio.AbstractEventLoop = None,
@@ -37,7 +37,7 @@ class HttpRequestReplay(HttpClient):
                  verify_ssl: bool = False
                  ):
         """
-        Create a new instance of :class:`loadguard.scenarii.replay.ReplayHttpRequest` to
+        Create a new instance of :class:`loadguard.user_scenarii.replay.ReplayHttpRequest` to
         replay :class:`deepnox.network.http.HttpRequest`.
 
         :param loop: The event loop.
