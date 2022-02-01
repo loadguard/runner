@@ -167,6 +167,7 @@ setup(
         "loadguard.runner": "src/loadguard/runner",
         "loadguard.settings": "src/loadguard/settings",
         "loadguard.scenarii": "src/loadguard/scenarii",
+        "loadguard.user_scenarii": "src/loadguard/user_scenarii",
         "loadguard.templates": "src/loadguard/templates",
     },
     scripts=[],
