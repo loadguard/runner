@@ -58,7 +58,7 @@ class ProjectStore(Map):
         self.ARGS = ProjectStore.get_project_args(args)
         self.PATHS = ProjectStore.get_project_paths(self.ARGS.project_root, self.ARGS.env)
         self.PATHS.settings_file = os.path.join(self.ARGS.config_dir, LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME)
-        self.SETTINGS = load_settings(self.PATHS.settings_file).get()
+        self.SETTINGS = load_settings(self.PATHS.settings_file)
         self.DATA = Map()
         self._loop: asyncio.AbstractEventLoop = None
 
