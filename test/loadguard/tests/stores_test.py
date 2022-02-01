@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Unit tests for module: loadguard.stores.project_store
+Unit tests for :module:`loadguard.stores`
 
 This file is a part of LoadGuard project.
 
