@@ -13,7 +13,7 @@ from unittest import mock
 
 from deepnox.tests.helpers.filesystem import TestFileContent
 from deepnox.utils.maps import Map
-from loadguard.stores.project_store import ProjectStore
+from loadguard.stores import ProjectStore
 
 
 class ProjectStoreTestCase(unittest.TestCase):
