@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-# loadguard.runner.store
+# loadguard.stores
 
 This module provides a useful store to run a LoadGuard project sequence.
 
@@ -20,9 +20,9 @@ from types import ModuleType
 
 import arrow
 
-from deepnox.settings.base import read_yaml_file
-from deepnox.utils.maps import UpperMap, Map
-from loadguard.defaults import LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME
+from deepnox.settings.base import load_settings
+from deepnox.utils.maps import Map
+from loadguard.consts import LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME
 
 LOGGER = logging.getLogger(__name__)
 """The main loggers. """
@@ -57,8 +57,8 @@ class ProjectStore(Map):
 
         self.ARGS = ProjectStore.get_project_args(args)
         self.PATHS = ProjectStore.get_project_paths(self.ARGS.project_root, self.ARGS.env)
-        self.PATHS.settings_file = os.path.join(self.PATHS.config, LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME)
-        self.SETTINGS = Map(read_yaml_file(self.PATHS.settings_file))
+        self.PATHS.settings_file = os.path.join(self.PATHS.config_dir, LG_PROJECT_CONFIGURATION_DEFAULT_FILENAME)
+        self.SETTINGS = load_settings(self.PATHS.settings_file).get()
         self.DATA = Map()
         self._loop: asyncio.AbstractEventLoop = None
 
@@ -73,7 +73,7 @@ class ProjectStore(Map):
         """
         return Map({"src": os.environ.get("LG_PROJECT_SRC_DIR", os.path.join(project_root, "src")),
                     "test": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "test")),
-                    "config": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "config", env)),
+                    "config": os.environ.get("LG_PROJECT_CONFIG_DIR", os.path.join(project_root, "config", env)),
                     "deploy": os.environ.get("LG_PROJECT_TEST_DIR", os.path.join(project_root, "deploy", env)),
                     "templates": os.environ.get("LG_PROJECT_TEMPLATES_DIR",
                                                 os.path.join(project_root, "res", "templates")),
