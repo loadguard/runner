@@ -155,9 +155,7 @@ setup(
         "loadguard.plugins",
         "loadguard.project",
         "loadguard.runner",
-        "loadguard.user_scenarii",
-        "loadguard.settings",
-        "loadguard.stores",
+        "loadguard.scenarii",
         "loadguard.templates",
     ],
     package_dir={
