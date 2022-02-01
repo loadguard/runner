@@ -9,19 +9,17 @@ This file is a part of LoadGuard Runner.
 
 
 """
+from loadguard.stores import ProjectStore
 
 __import__("pkg_resources").declare_namespace(__name__)
 
 
 import importlib
 import inspect
-import json
 import logging
 from types import ModuleType
 
 import arrow
-
-from loadguard.stores.project_store import ProjectStore
 
 LOGGER = logging.getLogger(__name__)
 """The main loggers. """
