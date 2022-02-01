@@ -6,6 +6,10 @@
 
 #### v0.0.5
 
+##### v0.0.5.4
+
+- Fix bug: invalid call.
+
 ##### v0.0.5.3
 
 - Fix bug: invalid config directory variable.
