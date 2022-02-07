@@ -4,7 +4,17 @@
 
 ### v0.0
 
+### v0.0.6
+
+### v0.0.6.0
+
+- Various improvements.
+
 #### v0.0.5
+
+##### v0.0.5.5
+
+- Fix bug: invalid call.
 
 ##### v0.0.5.4
 
