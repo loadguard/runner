@@ -16,7 +16,7 @@ from distutils.core import Command
 __name__ = "loadguard-runner"
 """ The project name. """
 
-__version__ = "0.0.5.5"
+__version__ = "0.0.6.0"
 """ The current version (work in progress). """
 
 try:
