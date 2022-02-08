@@ -8,7 +8,7 @@
 
 ### v0.0.6.0
 
-`#tocomplete`
+`#to:complete`
 
 #### v0.0.5
 
